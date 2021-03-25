@@ -67,9 +67,9 @@ for(let i = 0; i<numbers.length; i++){
     }
 }
 console.log(min)
-*/
 
-/*
+
+
 var count = [35,95,62,45,75,15]
 var search = count.indexOf(45)
 
@@ -79,9 +79,9 @@ var search = count.indexOf(45)
     else {
         console.log("error")
     }
-*/
 
-/*
+
+
 var found = [23,20,15,52,21,56]
 var search = found.indexOf(15)
 if(found[search]){
@@ -90,9 +90,8 @@ if(found[search]){
 else{
     console.log("error")
 }
-*/
 
-/*
+
 var char = ["s","h","r","i","k","a","n","t"]
 var find = char.indexOf("r")
 if(char[find]){
@@ -101,7 +100,7 @@ if(char[find]){
 else{
     console.log("error")
 }
-*/
+
 
 var digit = [45,58,62,35,15]
 var max = digit[0]
@@ -111,3 +110,52 @@ for(let i = 0; i<digit.length; i++){
     }
 }
 console.log(max)
+*/
+
+/*
+ var arrnum = [50,60,40,10,90,70,60,]
+ //console.log(arrnum[2])
+ //arrnum.push(100)
+ //console.log(arrnum)
+ //arrnum.pop()
+ var add = arrnum[0]
+ for(let i = 0 ; i<arrnum.length ; i++){
+     add = add + arrnum[i]
+     console.log(add)
+ }
+ console.log("final addition is : " +add)
+ */
+
+ /*
+ var arrnum = [50,60,40,10,90,70,60,]
+ var max = arrnum[0]
+ for(let i= 0 ; i<arrnum.length ; i++ ){
+     if(max<arrnum[i]){
+         max = arrnum[i]
+     }
+ }
+ console.log("max number in this array is :" +max)
+ */
+
+ /*
+ var arrnum = [50,60,40,10,90,70,60,]
+ var min = arrnum[0]
+ for(let i =0 ; i<arrnum.length ; i++){
+     if(arrnum[i]<min){
+         min = arrnum[i]
+     }
+ }
+ console.log(min)
+ */
+
+ var arrnum = [50,60,40,10,90,70,60,]
+ var index = arrnum.indexOf(40)
+ //console.log(index)
+ 
+     if(arrnum[index]){
+         console.log("yes... it is found this array list " + arrnum[index])
+     }
+     else{
+         console.log(" error ")
+     }
+ 
