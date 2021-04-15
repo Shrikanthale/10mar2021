@@ -2,6 +2,8 @@ import {Book} from '../models/book.js'
 let books = []
 
 export const getbook = (req,res) => {
+    console.log("hii..")
+    console.log(req.query)
     console.log("in getbook")
     //res.send(books)
     Book.find()
@@ -50,6 +52,34 @@ export const createbook = (req,res) =>{
     .catch(
         (err) => {
             res.send(err)
+        }
+    )
+}
+export const deletebookById = (req,res) =>{
+    console.log("in deletebookbyid")
+    Book.findByIdAndDelete(req.params.id)
+    .then(
+        (result) => {
+            res.send(result)
+        }
+    )
+    .catch(
+        (err) => {
+            console.log(err)
+        } 
+    )
+}
+export const updatebookById = (req,res)=>{
+    Book.findByIdAndUpdate(req.params.id,{
+        author:req.body.author
+    }).then(
+        (result)=>{
+            res.send(result)
+        }
+    )
+    .catch(
+        (err)=>{
+            console.log(err)
         }
     )
 }
