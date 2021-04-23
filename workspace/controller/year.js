@@ -1,21 +1,30 @@
+
 import {Year} from '../models/year.js'
+
+
 let years = []
 
 export const getyear = (req,res) => {
     console.log(req.query)
-    console.log("getyear")
+    
    // res.send(years)
-   Year.find()
-   .then(
-    (result) => {
-        res.send(result)
-    }
-)
-.catch(
-    (err) => {
-        res.send(err)
-    }
-)
+   if(req.query.year){
+       getyr(req,res)
+   }
+else{
+    console.log("getyear")
+    Year.find()
+    .then(
+     (result) => {
+         res.send(result)
+     }
+ )
+ .catch(
+     (err) => {
+         res.send(err)
+     }
+ )
+}
 }
 export const getyearById = (req,res) => {
     console.log("getyearbyid")
@@ -38,7 +47,7 @@ export const createyear = (req,res) => {
    // res.send("okay...!")
    const year = new Year({
        date:req.body.date,
-       year:req.body.Year
+       year:req.body.year
    })
    year.save()
    .then(
@@ -84,3 +93,20 @@ export const updateyearById = (req,res) => {
         }
     )
 }
+
+const getyr = (req,res) => {
+    Year.aggregate(
+        [{$match : {"year" : req.query.year}}]                                    
+    )
+    .then(
+        (result) => {
+            res.send(result)
+        }
+    )
+    .catch(
+        (err) => {
+            console.log(err)
+        }
+    )
+}
+
