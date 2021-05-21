@@ -2,6 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import bookrouter from './routes/book.js'
 import mongoose from 'mongoose'
+import tutorialRouter from './routes/tutorials.js'
 
 var dbURI ='mongodb+srv://kanthale:kanthale1@cluster0.pcywb.mongodb.net/library?retryWrites=true&w=majority'
 mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedTopology:true})
@@ -28,6 +29,7 @@ server.use(bodyParser.json())
 var frontpage = (req,res) =>
 res.send("welcome to book stall")
 server.use("/book",bookrouter)
+server.use("/tutorial",tutorialRouter)
 server.get("/", frontpage)
 
 
