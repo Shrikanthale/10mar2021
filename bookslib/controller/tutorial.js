@@ -1,5 +1,5 @@
 import db from '../models/bookindex.js';
-const Tutorials = db. Tutorials;
+const Tutorials = db.tutorials;
 const op = db.Sequelize.op;
 
 export const getAllTutorialsByTitle = (req,res) =>{
