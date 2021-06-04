@@ -3,7 +3,23 @@ import bodyParser from 'body-parser'
 import bookrouter from './routes/book.js'
 import mongoose from 'mongoose'
 import tutorialRouter from './routes/tutorials.js'
+import pgdb from './models/bookindex.js'
+pgdb.sequelize.sync({force : true})
+.then(
+    (result) => {
+        console.log("+++++")
+        console.log(result)
+        console.log("++++")
+    }
+)
 
+.catch(
+    (err) => {
+        console.log("----")
+        console.log(err)
+        console.log("-----")
+    }
+)
 var dbURI ='mongodb+srv://kanthale:kanthale1@cluster0.pcywb.mongodb.net/library?retryWrites=true&w=majority'
 mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedTopology:true})
 
