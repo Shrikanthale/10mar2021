@@ -1,10 +1,11 @@
 import express from 'express'
-import {getAllTutorialsByTitle} from '../controller/tutorial.js'
+import {getAllTutorialsByTitle,createTutorial} from '../controller/tutorial.js'
 
 
 const router = express.Router();
 
 router.get("/",getAllTutorialsByTitle)
+router.post("/",createTutorial)
 
 
 export default router
