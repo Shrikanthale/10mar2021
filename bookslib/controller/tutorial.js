@@ -35,7 +35,7 @@ export const createTutorial = (req, res) => {
     Tutorials.create(tutorial)
     .then(
         (result) => {
-            res.send(201).send(result)
+            res.status(201).send(result)
         }
     )
     .catch(
@@ -46,3 +46,83 @@ export const createTutorial = (req, res) => {
         }
     )
 }    
+
+export const deleteTutorialById = (req,res) =>{
+    Tutorials.destroy(
+        {where :{id:req.params.id}}
+    )
+    .then(
+        (result) => {
+            if(result == 1){
+                res.status(200).send({
+                    message : "tutorial has delete"
+                })
+            } 
+            else{
+                res.status(422).send({
+                    message : "this id doesnt exist in table"
+                })
+            }
+        }
+    )
+    .catch(
+        (err) => {
+            res.status(500).send({
+                message : err || "Internal DB error"
+            })
+        }
+    )
+}
+
+
+export const deleteTutorials = (req,res) => {
+    Tutorials.destroy(
+        {
+            where : {},
+            truncate : false
+        }
+        
+    )
+    .then(
+        (result) => {
+                res.status(200).send({
+                    message : `${result} tutorial has delete`
+                })
+            }
+    )
+    .catch(
+        (err) => {
+            res.status(500).send({
+                message : err || "Internal DB error"
+            })
+        }
+    )
+}
+
+
+export const updateTutorialById = (req,res) => {
+    Tutorials.update(req.body,{
+        where : {id:req.params.id}
+    })   
+    .then(
+        (result) => {
+            if(result == 1){
+                res.status(200).send({
+                    message : "tutorial has update"
+                })
+            } 
+            else{
+                res.status(422).send({
+                    message : "this id doesnt exist in table"
+                })
+            }
+        }
+    )
+    .catch(
+        (err) => {
+            res.status(500).send({
+                message : err || "Internal DB error"
+            })
+        }
+    ) 
+}

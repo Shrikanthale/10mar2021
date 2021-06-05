@@ -12,7 +12,7 @@ const tutorial = (sequelize,Sequelize)=>{
             type : Sequelize.STRING
         }
     },{
-        timestamps:false
+        timestamps:true
     })
     return Tutorial
 }
