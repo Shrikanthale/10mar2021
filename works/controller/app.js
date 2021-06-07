@@ -4,20 +4,27 @@ let rooms = []
 
 export const getroom = (req,res) => {
     console.log(req.query)
-    console.log("in get")
-    //res.send(rooms)
 
-    Room.find()
-    .then(
-        (result) => {
-            res.send(result)
-        }
-    )
-    .catch(
-        (err) => {
-          console.log(err)
-        }
-    )
+    if(req.query.roomId){
+        getroomid(req.res)
+    }
+    else{
+        console.log("in get")
+        //res.send(rooms)
+    
+        Room.find()
+        .then(
+            (result) => {
+                res.send(result)
+            }
+        )
+        .catch(
+            (err) => {
+              console.log(err)
+            }
+        )
+    
+    }
 }
 export const getroombyid = (req,res) => {
     console.log("getroombyid")
@@ -80,6 +87,22 @@ export const updateroombyid = (req,res) => {
     Room.findByIdAndUpdate(req.params.id,{
         date:req.body.id
     })
+    .then(
+        (result) => {
+            res.send(result)
+        }
+    )
+    .catch(
+        (err) => {
+          console.log(err)
+        }
+    )
+}
+
+const getroomid = (req,res) => {
+    Room.aggregate(
+        [{$match:{"roomId":req.query.roomId}}]
+    )
     .then(
         (result) => {
             res.send(result)
