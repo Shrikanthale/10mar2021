@@ -4,12 +4,33 @@ import bookrouter from './routes/book.js'
 import mongoose from 'mongoose'
 import tutorialRouter from './routes/tutorials.js'
 import pgdb from './models/bookindex.js'
-pgdb.sequelize.sync({force : true})
+import cors from 'cors';
+
+var corsoptions = {
+    origin : "http://localhost:9002"
+};
+const Roles = pgdb.roles;
+function initializeDB(){
+    Roles.create({                       // while doing post req creating row inside table
+        id : 1,
+        name : "user"
+    })
+    Roles.create({
+        id : 2,
+        name : "admin"
+    })
+    Roles.create({
+        id : 3,
+        name : "moderator"
+    })
+}
+pgdb.sequelize.sync({force : true})  // this will drop the table and re-sync the db
 .then(
-    (result) => {
-        console.log("+++++")
-        console.log(result)
-        console.log("++++")
+    () => {
+        initializeDB();
+       // console.log("+++++")
+        //console.log(result)
+       // console.log("++++")
     }
 )
 
@@ -39,7 +60,8 @@ mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedTopology:true})
 
 const server = express()
 const PORT = 9002
-
+server.use(cors(corsoptions));
+//parser req content type - application/json
 server.use(bodyParser.json())
 
 var frontpage = (req,res) =>
