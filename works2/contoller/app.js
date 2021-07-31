@@ -85,7 +85,7 @@ export const updategrocery = (req,res) => {
     }))
     .then(
         (result) => {
-            res.send(result)
+            res.send({"result":"sucessfull"})
         }
     )
     .catch(
