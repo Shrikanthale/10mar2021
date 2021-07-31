@@ -1,19 +1,19 @@
-import {Customerdeatials} from '../models/app.js'
+import {Grocerydeatials} from '../models/app.js'
 
 let customers = []
 
 
-export const getcustomer = (req,res) => {
+export const getgrocery = (req,res) => {
     
     //res.send(customers)
     console.log(req.query)
 
-   if(req.query.date){
-       getcustomerroomname(req.res)
+   if(req.query.groceryItem){
+       getgroceryname(req.res)
    }
    else{
-    console.log("getcustomer")
-    Customerdeatials.find()
+    console.log("getgrocery")
+    Grocerydeatials.find()
     .then(
         (result) => {
             res.send(result)
@@ -27,9 +27,9 @@ export const getcustomer = (req,res) => {
    }
 }
 
-export const getcustomerbyid =(req,res) => {
+export const getgrocerybyid =(req,res) => {
     console.log("getbyid")
-    Customerdeatials.findById(req.params.id)
+    Grocerydeatials.findById(req.params.id)
     .then(
         (result) => {
             res.send(result)
@@ -42,21 +42,18 @@ export const getcustomerbyid =(req,res) => {
     )
 }
 
-export const createcustomer = (req,res) => {
-    console.log("createcustomer")
+export const creategrocery = (req,res) => {
+    console.log("creategrocery")
     //customers.push(req.body)
     //res.send("done...")
-    const customerdeatials = new Customerdeatials({
-        roomname:req.body.roomname,
-        customername:req.body.customername,
-        bookingsataus:req.body.bookingsataus,
-        date:req.body.date,
-        starttimeandendtime:req.body.starttimeandendtime
+    const grocerydeatials = new Grocerydeatials({
+        groceryItem:req.body.groceryItem,
+        isPurchesed:req.body.isPurchesed,
     })
-    customerdeatials.save()
+    grocerydeatials.save()
     .then(
         (result) => {
-            res.send(result)
+            res.send({"result":"sucessfull"})
         }
     )
     .catch(
@@ -66,12 +63,12 @@ export const createcustomer = (req,res) => {
     )
 }
 
-export const deletecustomerbyid = (req,res) => {
-    console.log("deletecustomerbyid")
-    Customerdeatials.findByIdAndDelete(req.params.id)
+export const deletegrocerybyid = (req,res) => {
+    console.log("deletegrocerybyid")
+    Grocerydeatials.findByIdAndDelete(req.params.id)
     .then(
         (result) => {
-            res.send(result)
+            res.send({"result":"sucessfull"})
         }
     )
     .catch(
@@ -81,10 +78,10 @@ export const deletecustomerbyid = (req,res) => {
     )
 }
 
-export const updatecustomerbyid = (req,res) => {
-    console.log("updatecustomerbyid")
-    Customerdeatials.findByIdAndUpdate(req.params.id,({
-        roomname:req.body.roomname
+export const updategrocery = (req,res) => {
+    console.log("updategrocery")
+    Grocerydeatials.findByIdAndUpdate(req.params.id,({
+        isPurchesed:req.body.isPurchesed
     }))
     .then(
         (result) => {
@@ -98,9 +95,9 @@ export const updatecustomerbyid = (req,res) => {
     )
 }
 
-const getcustomerroomname = (req,res)=>{
-    Customerdeatials.aggregate(
-    [{$match:{"date":req.query.date}}]
+const getgroceryname = (req,res)=>{
+    Grocerydeatials.aggregate(
+    [{$match:{"groceryItem":req.query.groceryItem}}]
     )
 .then(
     (result)=>{

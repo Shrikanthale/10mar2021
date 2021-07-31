@@ -1,9 +1,15 @@
 import express from 'express'
-import{getcustomer,createcustomer} from '../contoller/app.js'
+import{getgrocery,getgrocerybyid,creategrocery,deletegrocerybyid} from '../contoller/app.js'
 
 const router = express.Router()
 
-router.get('/getall',getcustomer)
-router.post('/',createcustomer)
+router.get('/getAll',getgrocery)
+router.get('/:id',getgrocerybyid)
+router.post('/add',creategrocery)
+router.delete('/deleteGroceryItem',deletegrocerybyid)
+//router.update('/:id',updategrocery)
 
 export default router 
+
+// "groceryItem":"wheat 3 kg",
+//     "isPurchesed":"false"
